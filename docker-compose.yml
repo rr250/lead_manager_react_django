@@ -1,0 +1,9 @@
+version: '3'
+services:
+    web:
+        build: .
+        command: python leadmanager/manage.py runserver 8000
+        volumes:
+        - /
+        ports:
+        - "8000:8000"
