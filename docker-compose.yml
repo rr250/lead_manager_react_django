@@ -1,9 +1,18 @@
 version: '3'
 services:
-    web:
-        build: .
+    frontend:
+        build: 
+            context: .
+            dockerfile: docker/frontend/Dockerfile
+    backend:
+        build: 
+            context: .
+            dockerfile: docker/backend/Dockerfile
         command: python leadmanager/manage.py runserver 8000
-        volumes:
-        - /
         ports:
-        - "8000:8000"
+        - "127.0.0.1:80:8000/tcp"
+        depends_on:
+            - frontend
+
+
+# docker run -p 127.0.0.1:80:8000/tcp lead_manager_react_django-master_backend
